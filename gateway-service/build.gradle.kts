@@ -11,6 +11,12 @@ java {
     sourceCompatibility = JavaVersion.VERSION_17
 }
 
+tasks {
+    bootJar {
+        archiveFileName.set("gateway-service.jar")
+    }
+}
+
 repositories {
     mavenCentral()
 }
