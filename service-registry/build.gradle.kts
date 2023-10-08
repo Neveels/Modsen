@@ -11,6 +11,12 @@ java {
     sourceCompatibility = JavaVersion.VERSION_17
 }
 
+tasks {
+    bootJar {
+        archiveFileName.set("service-registry-service.jar")
+    }
+}
+
 repositories {
     mavenCentral()
 }
