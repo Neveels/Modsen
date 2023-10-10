@@ -1,0 +1,4 @@
+FROM openjdk:17 as final
+ADD ./ /home/app
+COPY ./build/libs/authentication-service.jar /home/app/authentication-service.jar
+ENTRYPOINT ["java", "-jar", "/home/app/authentication-service.jar"]
