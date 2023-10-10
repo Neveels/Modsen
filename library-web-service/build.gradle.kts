@@ -17,6 +17,12 @@ configurations {
     }
 }
 
+tasks {
+    bootJar {
+        archiveFileName.set("library-web-service.jar")
+    }
+}
+
 repositories {
     mavenCentral()
 }

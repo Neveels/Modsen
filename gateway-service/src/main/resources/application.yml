@@ -11,7 +11,7 @@ spring:
             - Path=/auth/**
 
         - id: library-web-service
-          uri: ${AUTH_SERVICE_URL:http://localhost:8091}
+          uri: ${LIBRARY_WEB_SERVICE_URL:http://localhost:8091}
           predicates:
             - Path=/library/**
           filters:

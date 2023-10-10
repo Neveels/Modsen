@@ -1,0 +1,4 @@
+FROM openjdk:17 as final
+ADD ./ /home/app
+COPY ./build/libs/library-service.jar /home/app/library-service.jar
+ENTRYPOINT ["java", "-jar", "/home/app/library-service.jar"]
