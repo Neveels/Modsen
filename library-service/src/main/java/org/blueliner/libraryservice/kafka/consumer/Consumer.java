@@ -17,14 +17,10 @@ public class Consumer {
     private final BookWorker bookWorker;
 
     @SneakyThrows
-    @KafkaListener(topics = "book.addition.id.notification", groupId = "book_addition-group")
+    @KafkaListener(topics = "${topic.name}", groupId = "${topic-group.name")
     public void consumeMessage(String message) {
         KafkaBookIdAdditionDto kafkaMailSenderMessage = objectMapper.readValue(message, KafkaBookIdAdditionDto.class);
-        try {
-            bookWorker.saveNewBook(kafkaMailSenderMessage.getId());
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
+        bookWorker.saveNewBook(kafkaMailSenderMessage.bookId());
     }
 
 }

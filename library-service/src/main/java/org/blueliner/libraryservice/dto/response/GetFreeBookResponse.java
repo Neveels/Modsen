@@ -1,4 +1,4 @@
-package org.blueliner.libraryservice.dto;
+package org.blueliner.libraryservice.dto.response;
 
 import lombok.Builder;
 

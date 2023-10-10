@@ -1,7 +1,8 @@
 package org.blueliner.libraryservice.service;
 
-import org.blueliner.libraryservice.dto.GetFreeBookResponse;
-import org.blueliner.libraryservice.dto.PutBookInTheStorageDto;
+import org.blueliner.libraryservice.dto.request.PutBookInTheStorageDto;
+import org.blueliner.libraryservice.dto.response.BookLogResponse;
+import org.blueliner.libraryservice.dto.response.GetFreeBookResponse;
 
 import java.util.List;
 
@@ -10,5 +11,5 @@ public interface BookWorker {
 
     List<GetFreeBookResponse> getFreeBooks();
 
-    void updateBookInTheStorage(Long bookId, PutBookInTheStorageDto putBookInTheStorageDto);
+    BookLogResponse updateBookInTheStorage(Long bookId, PutBookInTheStorageDto putBookInTheStorageDto);
 }
