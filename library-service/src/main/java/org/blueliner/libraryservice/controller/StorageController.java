@@ -26,7 +26,6 @@ public class StorageController {
     }
 
     @PutMapping("status/{bookId}")
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<BookLogResponse> updateBookLog(@PathVariable Long bookId,
                                                          @RequestBody PutBookInTheStorageDto putBookInTheStorageDto
     ) {
