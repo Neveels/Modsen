@@ -1,11 +1,14 @@
 spring:
+
   application:
     name: library-web-service
+
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/library-web-service-db
     username: root
     password: 212109
+
   jpa:
     hibernate.ddl-auto: none
     generate-ddl: true
@@ -13,6 +16,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+
   kafka:
     bootstrap-servers: http://localhost:9092
     consumer:
@@ -20,14 +24,16 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
 server:
   port: 8091
-  client:
-    service-url:
-      defaultZone: http://service-registry:8761/eureka/
 
 url:
   library: ${LIBRARY_SERVICE_URL:http://localhost:8888/storage}
 
 topic:
   name: book.addition.id.notification
+
+springdoc:
+  api-docs:
+    path: library/swagger-ui/index.html

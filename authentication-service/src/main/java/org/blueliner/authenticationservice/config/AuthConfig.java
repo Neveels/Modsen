@@ -27,7 +27,8 @@ public class AuthConfig {
                     .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                             .requestMatchers(
                                     "/auth/register",
-                                    "/auth/authenticate"
+                                    "/auth/authenticate",
+                                    "/auth/swagger-ui/index.html"
                             )
                             .permitAll()
                             .anyRequest()

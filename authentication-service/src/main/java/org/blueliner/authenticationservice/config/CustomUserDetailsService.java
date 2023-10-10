@@ -12,12 +12,12 @@ import org.springframework.stereotype.Component;
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserCredentialRepository repository;
-
+    private final String USER_NOT_FOUND_EXCEPTION = "User with name not found %s";
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return repository.findByEmail(username)
                 .map(CustomUserDetails::new)
-                .orElseThrow(() -> new UsernameNotFoundException("user not found with name :" + username));
+                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_EXCEPTION, username)));
     }
 
 }

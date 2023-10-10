@@ -22,3 +22,7 @@ jwt:
 
 server:
   port: 8400
+
+springdoc:
+  api-docs:
+    path: auth/swagger-ui/index.html

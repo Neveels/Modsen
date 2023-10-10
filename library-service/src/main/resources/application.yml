@@ -1,7 +1,4 @@
 spring:
-  client:
-    service-url:
-      defaultZone: http://eureka-server:8761/eureka/
 
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver

@@ -9,7 +9,7 @@ import org.springframework.web.client.ResponseErrorHandler;
 
 public class CustomResponseErrorHandler implements ResponseErrorHandler {
     private static final String BOOK_NOT_FOUND_EXCEPTION = "Book not found";
-    private final String BOOK_HAS_ALREADY_TAKEN_EXCEPTION = "Book has already taken exception";
+    private static final String BOOK_HAS_ALREADY_TAKEN_EXCEPTION = "Book has already taken exception";
     @Override
     @SneakyThrows
     public boolean hasError(ClientHttpResponse response) {
