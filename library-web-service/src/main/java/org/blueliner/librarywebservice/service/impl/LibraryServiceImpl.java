@@ -46,11 +46,7 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public BookResponse getBookById(Long id) {
-        Book book = bookRepository.findById(id).orElseThrow(() ->
-                new BookNotFoundException(
-                        String.format(BOOK_WITH_ID_NOT_FOUND_EXCEPTION, id)
-                )
-        );
+        Book book = getBookByIdFromDb(id);
         return modelMapper.map(book, BookResponse.class);
     }
 
@@ -70,7 +66,8 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public void deleteBookById(Long id) {
-        bookRepository.deleteById(id);
+        Book book = getBookByIdFromDb(id);
+        bookRepository.delete(book);
     }
 
     @Override
@@ -97,6 +94,15 @@ public class LibraryServiceImpl implements LibraryService {
     @Override
     public ResponseEntity<BookLogResponse> changeBookStatus(Long id, PutBookInTheStorageDto putBookInTheStorageDto) {
         return localLibraryServiceEndpoint.changeBookStatus(id, putBookInTheStorageDto);
+    }
+
+
+    private Book getBookByIdFromDb(Long id) {
+        return bookRepository.findById(id).orElseThrow(() ->
+                new BookNotFoundException(
+                        String.format(BOOK_WITH_ID_NOT_FOUND_EXCEPTION, id)
+                )
+        );
     }
     
 }
