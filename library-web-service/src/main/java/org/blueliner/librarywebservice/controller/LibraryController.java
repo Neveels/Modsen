@@ -3,6 +3,8 @@ package org.blueliner.librarywebservice.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.blueliner.librarywebservice.dto.request.BookRequest;
+import org.blueliner.librarywebservice.dto.request.PutBookInTheStorageDto;
+import org.blueliner.librarywebservice.dto.response.BookLogResponse;
 import org.blueliner.librarywebservice.dto.response.BookResponse;
 import org.blueliner.librarywebservice.service.LibraryService;
 import org.springframework.http.HttpStatus;
@@ -13,14 +15,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@Slf4j
 @RequestMapping("/library")
 public class LibraryController {
     private final LibraryService libraryService;
 
     @PostMapping()
     public ResponseEntity<BookResponse> createBook(@RequestBody BookRequest body) {
-        log.info("create book method");
         return ResponseEntity
                 .ok()
                 .body(libraryService.createBook(body));
@@ -41,10 +41,10 @@ public class LibraryController {
     }
 
     @GetMapping("/isnb/{isbn}")
-    public ResponseEntity<BookResponse> getBookByISBN(@PathVariable String isbn) {
+    public ResponseEntity<List<BookResponse>> getAllBooksByISBN(@PathVariable String isbn) {
         return ResponseEntity
                 .ok()
-                .body(libraryService.getBookByISBN(isbn));
+                .body(libraryService.getAllBooksByISBN(isbn));
     }
 
     @GetMapping("/free")
@@ -54,7 +54,6 @@ public class LibraryController {
                 .body(libraryService.getFreeBooks());
     }
 
-
     @PutMapping("/{id}")
     public ResponseEntity<BookResponse> updateBook(@PathVariable Long id,
                                                    @RequestBody BookRequest body) {
@@ -63,7 +62,11 @@ public class LibraryController {
                 .body(libraryService.updateBook(id, body));
     }
 
-
+    @PutMapping("/status/{id}")
+    public ResponseEntity<BookLogResponse> updateBookStatus(@PathVariable Long id,
+                                                            @RequestBody PutBookInTheStorageDto putBookInTheStorageDto) {
+        return libraryService.changeBookStatus(id, putBookInTheStorageDto);
+    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)

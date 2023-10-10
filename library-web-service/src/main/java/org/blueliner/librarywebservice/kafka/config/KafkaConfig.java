@@ -3,6 +3,7 @@ package org.blueliner.librarywebservice.kafka.config;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.blueliner.librarywebservice.kafka.dto.KafkaBookIdAdditionDto;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,8 @@ import java.util.Map;
 public class KafkaConfig {
 
     private final KafkaProperties kafkaProperties;
+    @Value("${topic.name}")
+    private String topicName;
 
     @Bean
     public ProducerFactory<String, KafkaBookIdAdditionDto> producerFactoryForObjectKafkaBookIdAdditionDtoTemplate() {
@@ -33,7 +36,7 @@ public class KafkaConfig {
     @Bean
     public NewTopic topicSendChangeStatusVieEmailEvent() {
         return TopicBuilder
-                .name("book.addition.id.notification")
+                .name(topicName)
                 .partitions(1)
                 .replicas(1)
                 .build();

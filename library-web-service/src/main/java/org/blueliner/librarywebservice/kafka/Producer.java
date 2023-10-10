@@ -13,13 +13,13 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Slf4j
 public class Producer {
-    private KafkaTemplate<String, KafkaBookIdAdditionDto> objectKafkaBookIdAdditionDtoTemplate;
-    private ObjectMapper objectMapper;
+    private final KafkaTemplate<String, KafkaBookIdAdditionDto> objectKafkaBookIdAdditionDtoTemplate;
+    private final ObjectMapper objectMapper;
 
     @SneakyThrows
     public void sendKafkaBookIdAdditionDtoToConsumer(Long id) {
         KafkaBookIdAdditionDto kafkaChangeStatusDto  = KafkaBookIdAdditionDto.builder()
-                .id(id)
+                .bookId(id)
                 .build();
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
         String bookId = objectMapper.writeValueAsString(kafkaChangeStatusDto);

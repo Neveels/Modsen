@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Builder
-@Getter
-public class KafkaBookIdAdditionDto {
-    Long id;
+public record KafkaBookIdAdditionDto (
+        Long bookId
+) {
 }
