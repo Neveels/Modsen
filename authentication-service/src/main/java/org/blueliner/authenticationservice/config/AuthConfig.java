@@ -27,8 +27,7 @@ public class AuthConfig {
                     .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                             .requestMatchers(
                                     "/auth/register",
-                                    "/auth/authenticate",
-                                    "/**"
+                                    "/auth/authenticate"
                             )
                             .permitAll()
                             .anyRequest()
