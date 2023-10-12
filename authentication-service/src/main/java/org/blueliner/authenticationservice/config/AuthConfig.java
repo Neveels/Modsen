@@ -28,7 +28,9 @@ public class AuthConfig {
                             .requestMatchers(
                                     "/auth/register",
                                     "/auth/authenticate",
-                                    "/auth/swagger-ui/index.html"
+                                    "/swagger-ui/**",
+                                    "/v3/api-docs/swagger-config",
+                                    "v3/api-docs"
                             )
                             .permitAll()
                             .anyRequest()

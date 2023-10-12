@@ -33,7 +33,3 @@ url:
 
 topic:
   name: book.addition.id.notification
-
-springdoc:
-  api-docs:
-    path: library/swagger-ui/index.html
